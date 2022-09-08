@@ -112,17 +112,7 @@ public class GUI extends JFrame implements ActionListener
             String restaurantCode = arr[3];
 
             mainClass Main = new mainClass();
-            new Timer().scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    Main.mainFunction(rkApiUrl, username, password, restaurantCode);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        }, 0, 50000);
+            Main.getValues(rkApiUrl, username, password, restaurantCode);
 
         }
         else {

@@ -3,6 +3,10 @@ import org.json.JSONObject;
 import org.json.XML;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -25,6 +29,21 @@ public class mainClass {
 //            }
 //        }, 0, 50000);
 //    }
+
+    public void getValues(String rkApiUrl,String username,String password,String restaurantCode) {
+                new Timer().scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    mainFunction(rkApiUrl, username, password, restaurantCode);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }, 0, 50000);
+    }
+
 
     // Үндсэн функц
     public void mainFunction(String rkApiUrl,String username,String password,String restaurantCode) throws Exception {
