@@ -101,7 +101,8 @@ public class dbConnection {
                 + "	rkApiUrl text, \n"
                 + " username text, \n"
                 + " password text, \n"
-                + " restaurantCode text \n"
+                + " restaurantCode text, \n"
+                + " unique(rkApiUrl, username, password, restaurantCode)\n"
                 + ");";
 
 
