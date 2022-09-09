@@ -30,7 +30,7 @@ public class getSettingsData {
             System.out.println("Greater than zero error" + e.getMessage());
         }
         String[] arr = new String [4];
-        arr[0] =rkApiUrl;
+        arr[0] = rkApiUrl;
         arr[1] = username;
         arr[2] = password;
         arr[3] = restaurantCode;

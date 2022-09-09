@@ -16,7 +16,7 @@ public class GUI extends JFrame implements ActionListener
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        RK_API_URL_Label = new JLabel("RK_API_URL :");
+        RK_API_URL_Label = new JLabel("IP:PORT :");
         USERNAME_Label = new JLabel("USERNAME :");
         PASSWORD_Label = new JLabel("PASSWORD :");
         Restaurant_code_Label = new JLabel("Restaurant_code :");
@@ -72,6 +72,21 @@ public class GUI extends JFrame implements ActionListener
         add(submitButton);
         add(clearButton);
         add(startButton);
+        startButton.setEnabled(false);
+
+        getSettingsData setting = new getSettingsData();
+        String[] arr = setting.getSettings();
+        String rkApi= arr[0];
+        String uname = arr[1];
+        String pass = arr[2];
+        String resCode = arr[3];
+
+        rkApiTF.setText(rkApi);
+        usernameTF.setText(uname);
+        passwordTF.setText(pass);
+        restaurantCodeTF.setText(resCode);
+        empIdTF.setText("");
+        stationIdTF.setText("");
     }
 
     public void actionPerformed(ActionEvent e)
@@ -97,6 +112,7 @@ public class GUI extends JFrame implements ActionListener
 
                 InsertApp app = new InsertApp();
                 app.insertSettings(rkApiUrl, username, password, restaurantCode);
+                startButton.setEnabled(true);
 
             }else{
                 System.out.println("401 aldaa garlaa");
@@ -105,11 +121,13 @@ public class GUI extends JFrame implements ActionListener
         else if(e.getSource() == startButton){
 
             getSettingsData settings = new getSettingsData();
-            String[] arr = settings.getSettings();
-            String rkApiUrl = arr[0];
-            String username = arr[1];
-            String password = arr[2];
-            String restaurantCode = arr[3];
+            String[] arr1 = settings.getSettings();
+            String ip = arr1[0];
+            String rkApiUrl =  "https://" +  ip + "/rk7api/v0/xmlinterface.xml";
+            String username = arr1[1];
+
+            String password = arr1[2];
+            String restaurantCode = arr1[3];
 
             mainClass Main = new mainClass();
             Main.getValues(rkApiUrl, username, password, restaurantCode);
@@ -126,12 +144,14 @@ public class GUI extends JFrame implements ActionListener
     }
     public static void main(String args[])
     {
-        new GUI();
+
         sslDisable ssl = new sslDisable();
         sslDisable.disableSslVerification();
         // DB connection
         dbConnection database = new dbConnection();
         database.createNewDb();
         database.createNewTable();
+        new GUI();
+
     }
 }
