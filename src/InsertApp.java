@@ -5,16 +5,17 @@ import java.sql.SQLException;
 
 public class InsertApp {
 
-    static  final String userDirectory = System.getProperty("user.dir");
+    static final String userDirectory = System.getProperty("user.dir");
+
     // database connection
     public Connection connect() {
-        String url = "jdbc:sqlite:"+ userDirectory + "\\menu.db";
+        String url = "jdbc:sqlite:" + userDirectory + "\\menu.db";
 //        String url = constVal.SQLITE_DB_PATH +"\\"+ constVal.DB_FILENAME;
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
-            System.out.println("err database connection "+e.getMessage());
+            System.out.println("err database connection " + e.getMessage());
         }
 
 //        System.out.println("haaaaaaaaaaaaaaaaaaaa_______________________++++++++++++++++++++++++++++: "+ constVal.SQLITE_DB_PATH);
@@ -37,7 +38,7 @@ public class InsertApp {
         }
     }
 
-    public void insertMenuItems( String Name, Integer menuIdent, Integer Code,String AltName, Integer ModiScheme, Integer MainParentIdent,  String Comment, String genname0450,String genname0409, String genForWeb,String genSortForWeb, String Instruct  ) {
+    public void insertMenuItems(String Name, Integer menuIdent, Integer Code, String AltName, Integer ModiScheme, Integer MainParentIdent, String Comment, String genname0450, String genname0409, String genForWeb, String genSortForWeb, String Instruct) {
         String sql = "INSERT or REPLACE INTO MenuItems(Name, menuIdent, Code, AltName, ModiScheme, MainParentIdent, Comment, genname0450, genname0409, genForWeb, genSortForWeb, Instruct) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = connect().prepareStatement(sql)) {
@@ -58,7 +59,8 @@ public class InsertApp {
             System.out.println(e.getMessage());
         }
     }
-    public void insertMenuItemsPrice( Integer menuPriceIdent, Integer menuPriceItemIdent, Integer menuPriceValue, Integer menuPriceObjectID  ) {
+
+    public void insertMenuItemsPrice(Integer menuPriceIdent, Integer menuPriceItemIdent, Integer menuPriceValue, Integer menuPriceObjectID) {
         String sql = "INSERT or REPLACE INTO Price(menuPriceIdent, menuPriceItemIdent, menuPriceValue, menuPriceObjectID) VALUES(?,?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = connect().prepareStatement(sql)) {
@@ -72,7 +74,7 @@ public class InsertApp {
         }
     }
 
-    public void insertRKOrderMenu( Integer identOrderMenu, Integer priceOrderMenu) {
+    public void insertRKOrderMenu(Integer identOrderMenu, Integer priceOrderMenu) {
         String sql = "INSERT or REPLACE INTO RKOrderMenu(identOrderMenu, priceOrderMenu) VALUES(?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = connect().prepareStatement(sql)) {
@@ -84,7 +86,7 @@ public class InsertApp {
         }
     }
 
-    public void insertTables( Integer tablesIdent,Integer TablesMainParentIdent, Integer TablesCode, String TablesName  ) {
+    public void insertTables(Integer tablesIdent, Integer TablesMainParentIdent, Integer TablesCode, String TablesName) {
         String sql = "INSERT or REPLACE INTO Tables(tablesIdent, TablesMainParentIdent, TablesCode, TablesName) VALUES(?,?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = connect().prepareStatement(sql)) {
@@ -98,7 +100,7 @@ public class InsertApp {
         }
     }
 
-    public void insertHallPlans( Integer HallPlansMainParentIdent, Integer HallPlansIdent) {
+    public void insertHallPlans(Integer HallPlansMainParentIdent, Integer HallPlansIdent) {
         String sql = "INSERT or REPLACE INTO HallPlans(HallPlansMainParentIdent, HallPlansIdent) VALUES(?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = connect().prepareStatement(sql)) {

@@ -4,10 +4,6 @@ import java.sql.*;
 public class dbConnection {
     static  final String userDirectory = System.getProperty("user.dir");
     public void createNewDb(){
-//        File theDir = new File(userDirectory);
-//        if (!theDir.exists()){
-//            theDir.mkdirs();
-//        }
 
         System.out.println("userDirectory :" + userDirectory);
 
@@ -25,7 +21,7 @@ public class dbConnection {
         }
     }
     public void createNewTable(){
-        String url = "jdbc:sqlite:"+ userDirectory + "\\menu.db";;
+        String url = "jdbc:sqlite:"+ userDirectory + "\\menu.db";
         String sql = "CREATE TABLE IF NOT EXISTS MenuItems (\n"
                 + "	Name text,\n"
                 + "	menuIdent INT PRIMARY KEY,\n"
